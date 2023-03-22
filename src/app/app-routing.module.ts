@@ -6,15 +6,10 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: AppComponent
+    redirectTo: 'forex-book'
   },
   {
-    path: '/forex-book/',
-    pathMatch: 'full',
-    component: AppComponent
-  },
-  {
-    path: '/forex-book',
+    path: 'forex-book',
     component: AppComponent
   },
 ];

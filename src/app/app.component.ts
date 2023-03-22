@@ -8,17 +8,18 @@ import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRe
 })
 export class AppComponent implements AfterContentInit {
   title = 'forex-book';
-  videoId = 'Hm5d0DcjFCo'
+  videoId = 'OB-mSJsO0T0'
   videoWidth = 640;
   public isVideoFinished: boolean = false;
+  public dimension: any;
 
   @ViewChild('forexBody', { static: true }) forexBody: ElementRef | undefined;
 
   ngAfterContentInit(): void {
-    let dimension = this.forexBody!.nativeElement.getBoundingClientRect();
+    this.dimension = this.forexBody!.nativeElement.getBoundingClientRect();
     
-    if (dimension.width < 500) {
-      this.videoWidth = dimension.width - 16;
+    if (this.dimension.width < 500) {
+      this.videoWidth = this.dimension.width - 16;
     }
   }
 
