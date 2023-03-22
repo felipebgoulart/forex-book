@@ -42,6 +42,12 @@ jobs:
           path: '/home/runner/work/forex-book/forex-book/node_modules'
           key: node-modules-${{ hashFiles('/home/runner/work/forex-book/forex-book/package.json') }}
 
+      - name: Set up node.js
+        uses: actions/setup-node@v3.3.0
+        with:
+          node-version: '14'
+          cache: 'npm'
+
       - name: Build
         run: npm run build:prod
 
