@@ -26,4 +26,8 @@ export class AppComponent implements AfterContentInit {
   public handleVideoFinished(event: boolean) {
     this.isVideoFinished = event;
   }
+
+  public openBuyLink() {
+    window.open('https://www.instagram.com/guuh_gomes03/');
+  }
 }
