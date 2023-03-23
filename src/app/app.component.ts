@@ -6,16 +6,18 @@ import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRe
   styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent implements AfterContentInit {
+export class AppComponent implements AfterViewChecked {
   title = 'forex-book';
   videoId = 'OB-mSJsO0T0'
   videoWidth = 640;
   public isVideoFinished: boolean = false;
   public dimension: any;
 
+  constructor(private renderer: Renderer2,private elem: ElementRef) {}
+
   @ViewChild('forexBody', { static: true }) forexBody: ElementRef | undefined;
 
-  ngAfterContentInit(): void {
+  ngAfterViewChecked(): void {
     this.dimension = this.forexBody!.nativeElement.getBoundingClientRect();
     
     if (this.dimension.width < 500) {

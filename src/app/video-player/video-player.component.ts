@@ -1,4 +1,5 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ViewChild, AfterContentInit, ElementRef } from '@angular/core';
+import { YouTubePlayer } from '@angular/youtube-player';
 
 @Component({
   selector: 'app-video-player',
@@ -11,6 +12,11 @@ export class VideoPlayerComponent implements OnInit {
 
   public playerVars = {
     autoplay: 1,
+    autohide: 1,
+    iv_load_policy: 3,
+    cc_load_policy: 0,
+    enablejsapi: 1,
+    mute: 1,
     controls: 0,
     fs: 0,
     modestbranding: 0,
@@ -18,6 +24,8 @@ export class VideoPlayerComponent implements OnInit {
     rel: 0,
     showinfo: 0
   }
+
+  @ViewChild('youtubePlayer', { static: true }) youtubePlayer: YouTubePlayer | undefined;
 
   @Input() videoId!: string;
   @Input() videoWidth!: number;
@@ -32,6 +40,10 @@ export class VideoPlayerComponent implements OnInit {
       document.body.appendChild(tag);
       this.apiLoaded = true;
     }
+
+    setTimeout(() => {
+      this.youtubePlayer?.unMute();
+    }, 1000);
   }
 
   public onStateChange(event: any) {
