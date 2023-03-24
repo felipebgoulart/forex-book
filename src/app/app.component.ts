@@ -8,7 +8,7 @@ import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRe
 })
 export class AppComponent implements AfterViewChecked {
   title = 'forex-book';
-  videoId = 'OB-mSJsO0T0'
+  videoId = 'Hm5d0DcjFCo'
   videoWidth = 640;
   public isVideoFinished: boolean = false;
   public dimension: any;

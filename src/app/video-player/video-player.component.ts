@@ -16,6 +16,7 @@ export class VideoPlayerComponent implements OnInit {
     iv_load_policy: 3,
     cc_load_policy: 0,
     enablejsapi: 1,
+    mute: 1,
     controls: 0,
     fs: 0,
     modestbranding: 0,
