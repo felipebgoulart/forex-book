@@ -8,12 +8,12 @@ import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRe
 })
 export class AppComponent implements AfterViewChecked {
   title = 'forex-book';
-  videoId = 'Hm5d0DcjFCo'
+  videoId = 'Hm5d0DcjFCo';
   videoWidth = 640;
   public isVideoFinished: boolean = false;
   public dimension: any;
 
-  constructor(private renderer: Renderer2,private elem: ElementRef) {}
+  constructor() {}
 
   @ViewChild('forexBody', { static: true }) forexBody: ElementRef | undefined;
 

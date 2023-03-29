@@ -13,6 +13,12 @@ html, body {
 .forex-body {
   color: #fafafa;
 
+  .line-through {
+    text-decoration: line-through;
+    text-decoration-color: red;
+    padding-left: 10px;
+  }
+
   .buy-link {
     color: #fafafa;
     background-color: #00B247;
@@ -34,10 +40,6 @@ html, body {
   section.home {
     .trade {
       font-family: 'Genos', sans-serif;
-    }
-    
-    .video-forex {
-      background-color: rgba(255, 255, 255, 0.2);
     }
 
     .btn-forex {
@@ -63,13 +65,30 @@ html, body {
     }
 
     .about-forex {
-      background-color: #0400BE;
+      border: 3px solid #0400BE;
+      background-color: #000000;
+      box-shadow: 0px 0px 50px #0400BE;
       color: #fafafa;
       font-size: 24px;
     }
 
     .steps-forex {
       padding: 24px 100px;
+    }
+
+    .warrant {
+      border-top: 1px solid #00B247;
+      box-shadow: 0px 0px 20px #00B247;
+
+      .payback {
+        width: 250px;
+        height: 100px;
+      }
+        
+      img {
+        width: 100px;
+        height: 100px;
+      }
     }
 
     .ebook {
@@ -84,7 +103,8 @@ html, body {
         }
 
         &-installment {
-          font-size: 48px;
+          font-size: 42px;
+          line-height: 1;
         }
 
         &-value {
@@ -92,5 +112,17 @@ html, body {
         }
       }
     }
+  }
+}
+
+@media (max-width: 768px) {  
+  .ebook-price-installment {
+    font-size: 24px !important;
+    line-height: 1;
+  }
+  
+  .ebook-price-value {
+    font-size: 48px !important;
+    line-height: 1;
   }
 }
