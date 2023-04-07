@@ -16,7 +16,7 @@ export class VideoPlayerComponent implements OnInit {
     iv_load_policy: 3,
     cc_load_policy: 0,
     enablejsapi: 1,
-    mute: 1,
+    mute: 0,
     controls: 0,
     fs: 0,
     modestbranding: 0,
@@ -24,8 +24,6 @@ export class VideoPlayerComponent implements OnInit {
     rel: 0,
     showinfo: 0
   }
-
-  @ViewChild('youtubePlayer', { static: true }) youtubePlayer: YouTubePlayer | undefined;
 
   @Input() videoId!: string;
   @Input() videoWidth!: number;
