@@ -1,4 +1,5 @@
 import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRef, Renderer2, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,15 +8,25 @@ import { AfterContentInit, AfterViewChecked, AfterViewInit, Component, ElementRe
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements AfterViewChecked {
-  title = 'forex-book';
-  videoId = 'NMjJe9t1QWY';
-  videoWidth = 640;
+  public title = 'forex-book';
+  public videoId = 'NMjJe9t1QWY';
+  public videoWidth = 640;
   public isVideoFinished: boolean = false;
   public dimension: any;
+  public target: string | undefined;
 
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
 
   @ViewChild('forexBody', { static: true }) forexBody: ElementRef | undefined;
+
+  ngOnInit(): void {
+    this.route.queryParams
+      .subscribe(params => {
+        if (params.v) this.target = params.v;
+        if (this.target == 'fkrfomrsgx') this.videoId = 'fkrfomrsgx';
+      }
+    );
+  }
 
   ngAfterViewChecked(): void {
     this.dimension = this.forexBody!.nativeElement.getBoundingClientRect();

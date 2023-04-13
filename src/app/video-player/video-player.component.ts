@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output, EventEmitter, ViewChild, AfterContentInit, ElementRef } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter, ViewChild, AfterContentInit, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
 import { YouTubePlayer } from '@angular/youtube-player';
 
 @Component({
@@ -25,11 +25,13 @@ export class VideoPlayerComponent implements OnInit {
     showinfo: 0
   }
 
+  @ViewChild('youtubePlayer', { static: true }) youtubePlayer: YouTubePlayer | undefined;
+
   @Input() videoId!: string;
   @Input() videoWidth!: number;
   @Output() onVideoFinish: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
     if(!this.apiLoaded) {
