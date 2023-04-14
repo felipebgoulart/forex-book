@@ -23,7 +23,7 @@ export class AppComponent implements AfterViewChecked {
     this.route.queryParams
       .subscribe(params => {
         if (params.v) this.target = params.v;
-        if (this.target == 'fkrfomrsgx') this.videoId = 'fkrfomrsgx';
+        if (this.target == 'XUeMyGOFBto') this.videoId = 'XUeMyGOFBto';
       }
     );
   }
