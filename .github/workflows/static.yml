@@ -24,6 +24,14 @@ jobs:
       - name: Install standard
         run: npm install --save-dev standard-version
 
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "felipe.goulart1999@gmail.com"
+          git config --local user.name "felipebgoulart"
+          git add -A
+          git commit -m "chore(release): generate changelog and version"
+          git push
+
       - name: Generate Changelog
         run: npx standard-version
 
