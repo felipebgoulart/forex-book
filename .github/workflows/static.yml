@@ -1,81 +1,23 @@
-name: CI / CD - Deployment
-
 on:
   push:
-    branches: ['prod']
-  workflow_dispatch:
+    branches:
+      - main
 
 jobs:
-  Checkout:
+  release:
     runs-on: ubuntu-latest
-    concurrency: ci-${{github.ref}}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
 
-      - name: Set up node.js
-        uses: actions/setup-node@v3.3.0
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
         with:
           node-version: '14'
-          cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Caching node modules
-        uses: actions/cache@v2
-        with:
-          path: '/home/runner/work/forex-book/forex-book/node_modules'
-          key: node-modules-${{ hashFiles('/home/runner/work/forex-book/forex-book/package.json') }}
-
-  Upload_Artifact:
-    needs: Checkout
-
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Caching node modules
-        uses: actions/cache@v2
-        with:
-          path: '/home/runner/work/forex-book/forex-book/node_modules'
-          key: node-modules-${{ hashFiles('/home/runner/work/forex-book/forex-book/package.json') }}
-
-      - name: Set up node.js
-        uses: actions/setup-node@v3.3.0
-        with:
-          node-version: '14'
-          cache: 'npm'
-
-      - name: Build
-        run: npm run build:prod
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: 'dist/'
-
-  Deploy:
-    needs: Upload_Artifact
-
-    permissions:
-      pages: write
-      id-token: write
-
-    environment:
-      name: Production
-      url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v1
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1
+      - name: Release
+        run: npx standard-version
