@@ -21,6 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Install standard
+        run: npm install --save-dev standard-version
+
       - name: Generate Changelog
         run: npm run release
 
