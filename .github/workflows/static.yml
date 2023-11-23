@@ -1,4 +1,4 @@
-name: Generate Changelog
+name: Release
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  generate-changelog:
+  release:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,24 +21,5 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Install standard
-        run: npm install --save-dev standard-version
-
-      - name: Commit and push changes
-        run: |
-          git config --local user.email "felipe.goulart1999@gmail.com"
-          git config --local user.name "felipebgoulart"
-          git add -A
-          git commit -m "chore(release): generate changelog and version"
-          git push
-
-      - name: Generate Changelog
+      - name: Release
         run: npx standard-version
-
-      - name: Commit and push changes
-        run: |
-          git config --local user.email "felipe.goulart1999@gmail.com"
-          git config --local user.name "felipebgoulart"
-          git add -A
-          git commit -m "chore(release): generate changelog and version"
-          git push
