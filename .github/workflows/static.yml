@@ -28,3 +28,8 @@ jobs:
 
       - name: Release
         run: npx standard-version --first-release
+
+      - name: Push changes to GitHub
+        run: |
+          git push --follow-tags origin main
+
