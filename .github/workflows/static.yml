@@ -27,4 +27,4 @@ jobs:
           git config --global user.name "Your Name"
 
       - name: Release
-        run: npx standard-version
+        run: npx standard-version --first-release
