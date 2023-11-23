@@ -22,6 +22,6 @@ jobs:
         run: npm install
 
       - name: Generate Changelog
-        run: npm run changelog
+        run: npx auto-changelog --template changelog-template.hbs -p -u --commit-limit false
         env:
           GITHUB_TOKEN: ${{ secrets.TEMP_SECRET }}
