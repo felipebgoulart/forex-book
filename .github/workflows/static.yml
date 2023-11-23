@@ -1,4 +1,4 @@
-name: Release
+name: Generate Changelog
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  release:
+  changelog:
     runs-on: ubuntu-latest
 
     steps:
@@ -14,14 +14,25 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: '14'
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Release
-        run: npx semantic-release
+      - name: Semantic Releasify
+          # You may pin to the exact commit or the version.
+          # uses: d3p1/semantic-releasify@235a884f798d7f845f24cd192c2d67fb08315efd
+        uses: d3p1/semantic-releasify@v1.1.0
+        with:
+            # The branch on which release should happen
+            branch: main
+            # The Git tag format used by semantic-release to identify releases
+            tag-format: v # optional, default is v${version}
+                
+
+      - name: Generate Changelog
+        run: npx auto-changelog -p -u --commit-limit false
         env:
-          GH_TOKEN: ${{ secrets.TEMP_SECRET }}
+          GITHUB_TOKEN: ${{ secrets.TEMP_SECRET }}
