@@ -1,35 +1,18 @@
-name: Update Changelog
-
 on:
   push:
     branches:
       - main
 
+permissions:
+  contents: write
+  pull-requests: write
+
+name: release-please
+
 jobs:
-  update-changelog:
+  release-please:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: 14
-
-    - name: Install dependencies
-      run: npm install
-
-    - name: Run github configt
-      run: |
-        git config user.name "felipebgoulart"
-        git config user.email "felipe.goulart999@gmail.com"
-    - name: Run standard-version
-      run: npx standard-version --no-verify
-
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        branch: main
-        github_token: ${{ secrets.TEMP_SECRET }}
+      - uses: google-github-actions/release-please-action@v3
+        with:
+          release-type: node
