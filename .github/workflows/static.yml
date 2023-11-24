@@ -10,15 +10,25 @@ permissions:
 name: release-please
 
 jobs:
-  release-please:
+  update-changelog:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: google-github-actions/release-please-action@v3
-        with:
-          release-type: node
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 14
+    
+    - name: github
+      uses: google-github-actions/release-please-action@v3
+      with:
+        release-type: node
       
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          branch: main
-          github_token: ${{ secrets.TEMP_SECRET }}
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        branch: main
+        github_token: ${{ secrets.TEMP_SECRET }}
