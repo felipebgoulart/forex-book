@@ -26,3 +26,15 @@ jobs:
       uses: google-github-actions/release-please-action@v3
       with:
         release-type: node
+
+  make-http:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: HTTP Request Action
+      uses: fjogeleit/http-request-action@v1.14.2
+      with:
+        url: https://fakestoreapi.com/products/1
+        method: GET
+        contentType: application/json
+                
