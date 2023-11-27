@@ -31,10 +31,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: HTTP Request Action
-      uses: fjogeleit/http-request-action@v1.14.2
-      with:
-        url: https://fakestoreapi.com/products/1
-        method: GET
-        contentType: application/json
+    - name: Ler Conteúdo do .md
+      id: ler-conteudo
+      run: echo "::set-output name=conteudo::$(cat CHANGELOG.md)"
+    
+    - name: Enviar Conteúdo
+      run: |
+        conteudo=$(cat CHANGELOG.md)
+        json="{\"conteudo\": \"$conteudo\"}"
+
+        curl -X POST \
+          -H "Content-Type: application/json" \
+          -d "$json" \
+          https://exemplo.com/api/upload
+      env:
+        arquivo: CHANGELOG.md
                 
